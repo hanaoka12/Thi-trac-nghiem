@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam</title>
+</head>
+<body>
+<h2>Exam</h2>
+
+<div id="questionsContainer"></div>
+
+<button onclick="submitExam()">Submit Exam</button>
+<p id="timer">Time Left: <span id="time">30:00</span></p>
+
+<script>
+// Timer functionality
+var timeLeft = 1800; // 30 minutes
+var timer = setInterval(function() {
+  var minutes = Math.floor(timeLeft / 60);
+  var seconds = timeLeft % 60;
+  document.getElementById("time").textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  timeLeft--;
+  if (timeLeft < 0) {
+    clearInterval(timer);
+    alert("Time's up!");
+    submitExam();
+  }
+}, 1000);
+
+// Exam questions and options (replace with your own questions)
+var questions = [
+  {
+    question: "What is the capital of France?",
+    options: ["Paris", "London", "Berlin", "Rome"],
+    answer: 0 // Index of correct option
+  },
+  {
+    question: "What is the largest planet in our solar system?",
+    options: ["Mars", "Jupiter", "Venus", "Saturn"],
+    answer: 1 // Index of correct option
+  },
+  // Add more questions as needed
+];
+
+// Display questions
+var currentQuestion = 0;
+displayQuestions();
+
+function displayQuestions() {
+  var questionsContainer = document.getElementById("questionsContainer");
+  questionsContainer.innerHTML = ""; // Clear previous questions
+  for (var i = 0; i < questions.length; i++) {
+    var questionDiv = document.createElement("div");
+    questionDiv.innerHTML = "<h3>Question " + (i + 1) + ": " + questions[i].question + "</h3>";
+    for (var j = 0; j < questions[i].options.length; j++) {
+      var option = document.createElement("input");
+      option.type = "radio";
+      option.name = "option" + i;
+      option.value = j;
+      var label = document.createElement("label");
+      label.textContent = questions[i].options[j];
+      questionDiv.appendChild(option);
+      questionDiv.appendChild(label);
+      questionDiv.appendChild(document.createElement("br"));
+    }
+    questionsContainer.appendChild(questionDiv);
+  }
+}
+
+// Submit exam functionality
+function submitExam() {
+  clearInterval(timer);
+  // Calculate score
+  var score = 0;
+  for (var i = 0; i < questions.length; i++) {
+    var selectedOption = document.querySelector('input[name="option' + i + '"]:checked');
+    if (selectedOption) {
+      if (parseInt(selectedOption.value) === questions[i].answer) {
+        score++;
+      }
+    }
+  }
+  // Display score
+  alert("Your score: " + score + "/" + questions.length);
+}
+</script>
+</body>
+</html>

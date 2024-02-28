@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  
+ background-image: url(flat-lay-school-supplies-with-medical-mask-copy-space.jpg);
+ background-color: #ffffff;
+ background-repeat: no-repeat;
+
+}
+
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  padding: 10px;
+  background-color: #4caaaf;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.alert {
+  color: red;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <button type="submit">Sign In</button>
+  </form>
+  <p id="errorMessage" class="alert" style="display: none;">Invalid username or password</p>
+  <p style="text-align: center;">Don't have an account? <a href="register.html">Register</a></p>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  // Perform validation and authentication here
+  // For demo purposes, assume username is "admin" and password is "password"
+  if (username === "admin" && password === "password") {
+    // Redirect to main page if authentication is successful
+    window.location.href = "dashboard.html";
+  } else {
+    document.getElementById("errorMessage").style.display = "block";
+  }
+});
+</script>
+</body>
+</html>

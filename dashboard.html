@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thi Trắc Nghiệm - Trang Chính</title>
+<style>
+  /* CSS cho giao diện người dùng */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Danh Sách Kỳ Thi</h1>
+  <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+  <table id="examTable">
+    <thead>
+      <tr>
+        <th>Tên Kỳ Thi</th>
+        <th>Loại Kỳ Thi</th>
+        <th>Trạng Thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Luyện tập Toán</td>
+        <td>Luyện tập</td>
+        <td>Có thể truy cập tự do</td>
+        <button onclick="startExam()">Start Exam</button>
+
+<script>
+function startExam() {
+  // Redirect to the exam page
+  window.location.href = "exam.html";
+}
+</script>
+      </tr>
+      <tr>
+        <td>Kiểm tra Hóa học</td>
+        <td>Giữa kỳ</td>
+        <td>Có thể truy cập tự do</td>
+      </tr>
+      <!-- Thêm các hàng khác tương tự -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+// JavaScript để thực hiện tính năng tìm kiếm
+document.getElementById("searchInput").addEventListener("input", function() {
+  var searchValue = this.value.toLowerCase();
+  var examTable = document.getElementById("examTable");
+  var rows = examTable.getElementsByTagName("tr");
+  for (var i = 1; i < rows.length; i++) {
+    var name = rows[i].getElementsByTagName("td")[0].innerText.toLowerCase();
+    if (name.includes(searchValue)) {
+      rows[i].style.display = "";
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>
